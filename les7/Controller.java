@@ -11,14 +11,21 @@ public class Controller {
     public Controller() {
         variants.put(1, Period.NOW);
         variants.put(5, Period.FIVE_DAYS);
+        variants.put(2, Period.DB);
     }
 
     public void getWeather(String userInput, String selectedCity) throws IOException {
         Integer userIntegerInput = Integer.parseInt(userInput);
 
         switch (variants.get(userIntegerInput)) {
-            case NOW -> weatherModel.getWeather(selectedCity, Period.NOW);
-            case FIVE_DAYS -> weatherModel.getWeather(selectedCity, Period.FIVE_DAYS);
+            case NOW:
+                weatherModel.getWeather(selectedCity, Period.NOW);
+                break;
+            case FIVE_DAYS:
+                weatherModel.getWeather(selectedCity, Period.FIVE_DAYS);
+            case DB:
+                //     throw new IOException("Этот метод пока не реализован!");
+                weatherModel.getSavedToDBWeather();
         }
     }
 }
